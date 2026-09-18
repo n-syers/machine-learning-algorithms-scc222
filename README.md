@@ -1,8 +1,15 @@
-# Custom Implementations of Machine Learning AI Models
-This repository was created to complete the former **SCC222** coursework at Lancaster University. This module has been changed since this project was undertaken.
+# Machine Learning Models for Glass Classification
+
+[![K-Nearest Neighbour (KNN)](https://img.shields.io/badge/Model-KNN-2563EB)](#k-nearest-neighbour)
+[![Decision Trees (DT)](https://img.shields.io/badge/Model-Decision_Trees-15803D)](#decision-trees)
+[![Naïve Bayes (NB)](https://img.shields.io/badge/Model-Na%C3%AFve_Bayes-7C3AED)](#naïve-bayes)
+
+Custom Python implementations of three supervised machine learning models, compared on their ability to identify glass types from refractive index and elemental composition. Explore the implementations and evaluation in [the coursework notebook](Coursework.ipynb).
+
+Originally developed for **SCC222** coursework at **Lancaster University**. The module has since changed, so this repository reflects the coursework at the time of completion.
 
 ## Introduction
-The purpose of this project was to investigate the performance of several machine learning classification algorithms for predicting classes from features. Mainly, identifying different types of glass based on their elemental compositions.
+This project investigates how accurately three classification algorithms identify glass types, comparing their predictive performance and computational cost.
 
 The project compares three supervised learning models:
 - **K-Nearest Neighbour (KNN)**
@@ -13,7 +20,7 @@ Each model was trained and evaluated on the provided glass classification datase
 The primary goal was to determine which of the implemented models provided the most reliable classification performance metrics and, therefore, was best suited to classifying unseen data.
 
 ## The Dataset & Data Preparation
-The study uses the **Glass Identification Dataset** from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/42/glass+identification). The dataset contains **214 glass samples**, represented by **9 features** and distributed across **7 classes**.
+The study uses the **Glass Identification Dataset** from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/42/glass+identification). The dataset contains **214 glass samples**, represented by **9 features**, with samples from **6 of the 7 defined classes**.
 
 Important to note, this dataset is notably incomplete, as it contains classes that skew the data distribution. This will affect the results, as the models will not be trained fairly across all classes, meaning they will favour represented classes in their predictions over underrepresented ones. Out of all 214 samples:
 - 163 Window glass (building windows and vehicle windows)
@@ -28,7 +35,7 @@ Important to note, this dataset is notably incomplete, as it contains classes th
   - 9 tableware
   - 29 headlamps
   
-This distribution shows that **Window Glass** is more represented than **Non-Window Glass**, meaning the results will favour **Window Glass** over its counterpart. However, **Vehicle Windows** should never appear as a predicted value, since no model has been trained on that class. If a model cannot train on a specific class, it cannot predict it when it appears.
+This distribution shows that **Window Glass** is more represented than **Non-Window Glass**, which can bias predictions towards the more common classes. **Non-float-processed vehicle windows** have no samples, so the models implemented here cannot learn or predict that class. Float-processed vehicle windows are represented by 17 samples.
 
 ### Splitting The Dataset
 
@@ -63,7 +70,7 @@ KNN can support multiple distance metrics, and several have been implemented in 
 |-|-|-|
 |Maximum Distance| The maximum distance measures the largest distance between features of two data points rather than the mean distance. | $d(x,y) = \max_i \|x_i-y_i\|$ |
 | Squared Euclidean Distance | Measures the straight-line distance between two samples based on their feature values. Squared and non-squared Euclidean produce the same neighbour ordering. | $d(x,y) = \sum_{i=1}^{n}(x_i-y_i)^2$ |
-| Manhattan Distance | The distance between two samples by summing the absolute differences between their feature values. It can be thought of as travelling along a grid rather than taking a direct straight-line path. | $d^2(x,y) = \sum_{i=1}^{n}(x_i-y_i)^2$ |
+| Manhattan Distance | The distance between two samples by summing the absolute differences between their feature values. It can be thought of as travelling along a grid rather than taking a direct straight-line path. | $d(x,y) = \sum_{i=1}^{n}\lvert x_i-y_i \rvert$ |
 
 > [!NOTE]
 > While KNN can use a variety of distance metrics, this project implements only three approaches within the KNN class: **Squared Euclidean distance**, **Manhattan distance**, and **Maximum distance**.
@@ -113,7 +120,6 @@ In conclusion, K-Nearest Neighbour (KNN) was the best-performing model for class
 KNN also struggled with some of the underrepresented classes, as reflected by lower F1 scores and misclassifications within the confusion matrix. This suggests that there were insufficient training samples for the model to reliably learn the characteristics of these classes. Similar difficulties were observed across all three models, which was expected given the noticeable class imbalance and the absence of samples for one of the defined classes, as discussed in the dataset preparation section.
 
 Overall, the results demonstrate that model performance is highly dependent on the dataset's characteristics and distribution, and would likely have benefited from a more balanced and complete dataset, particularly for the underrepresented classes, as well as from investigating alternative distance metrics and hyperparameter configurations. However, for the dataset and configurations evaluated in this project, KNN provided the strongest overall predictive performance of the three models tested.
-
 
 
 
