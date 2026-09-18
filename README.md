@@ -1,5 +1,5 @@
 # Custom Implementations of Machine Learning AI Models
-This repository was created to complete the **SCC222** coursework at Lancaster University.
+This repository was created to complete the former **SCC222** coursework at Lancaster University. This module has been changed since this project was undertaken.
 
 ## Introduction
 The purpose of this project was to investigate the performance of several machine learning classification algorithms for predicting classes from features. Mainly, identifying different types of glass based on their elemental compositions.
